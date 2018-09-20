@@ -16,7 +16,7 @@
     $row = $result->fetch(PDO::FETCH_ASSOC);
     function modify_button($name)
     {
-      return('<button type = "button" onclick = changeName("'.$name.'")>Modify</button>');
+      return('<button type = "button" id="Button'.$name.'" onclick = \'changeName("'.$name.'", this.id)\'>Modify</button>');
     }
 ?>
 
@@ -214,13 +214,21 @@
 
     </div>
     <script type=text/javascript>
-        function changeName(Edit)
+        function changeName(Edit, button)
         {
             console.log('Pulling up name Change');
             try
             {
+              if(document.getElementById(button).innerHTML == "Save")
+              {
+
+              }
+              else {
                 document.getElementById(Edit).contentEditable = "true";
+                document.getElementById(button).innerHTML = "Save";
+                console.log('Success');
                 return false;
+              }
             } catch(e)
             {
             return false;
