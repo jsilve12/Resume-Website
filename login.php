@@ -8,6 +8,7 @@ if(!isset($_GET['profile_id']))
     $_SESSION['error'] = "Profile Doesn't Exist";
     return;
 }
+
 basic_stuff();
 $result = $pdo->prepare('SELECT * FROM Profile WHERE profile_id = :uid');
 $result->execute(array(':uid' => $_GET['profile_id']));

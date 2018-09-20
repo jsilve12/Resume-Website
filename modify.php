@@ -8,6 +8,8 @@
         $_SESSION['error'] = "Profile Doesn't Exist";
         return;
     }
+    die_now();
+    errors();
     basic_stuff();
     $result = $pdo->prepare('SELECT * FROM Profile WHERE profile_id = :uid');
     $result->execute(array(':uid' => $_GET['profile_id']));
@@ -80,10 +82,9 @@
     <div class="container-fluid p-0">
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-        <div class="my-auto">
-          <h1 class="mb-0"><?php echo($row['first_name']); ?>
-            <span class="text-primary"><?php echo($row['last_name']); ?></span>
-          </h1>
+        <div class="my-auto" id="name">
+          <h1 class="mb-0" id="Fname"><?php echo($row['first_name']); ?>
+            <span class="text-primary" id="Lname"><?php echo($row['last_name']); ?></span></h1><button type = 'button' onclick = changeName()> Modify</button>
           <div class="subheading mb-5">
             <a href="mailto:name@email.com"><?php echo($row['email']); ?></a>
           </div>
@@ -201,7 +202,23 @@
       <hr class="m-0">
 
     </div>
+    <script type=text/javascript>
+        function changeName()
+        {
+            console.log('Pulling up name Change');
+            try
+            {
+                Fname = document.getElementById('Fname').value;
+                Lname = document.getElementById('Lname').value;
 
+                document.getElementById('Fname').contentEditable = "true";
+                return false;
+            } catch(e)
+            {
+            return false;
+          }
+        }
+    </script>
     <!-- Bootstrap core JavaScript -->
     <script src="Bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="Bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

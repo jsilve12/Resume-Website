@@ -60,7 +60,7 @@ else
             echo("<tr> <th> Name </th> <th> Headline </th> <th> Edit/Delete </th> <tr/>");
         }
             echo(" <tr> ");
-            echo(" <td> <a href='view.php?profile_id=".htmlentities($row['profile_id'])."'>".$row['first_name']."</a>"."
+            echo(" <td> <a href='resume.php?profile_id=".htmlentities($row['profile_id'])."'>".$row['first_name']."</a>"."
             </td>");
             echo("<td>".htmlentities($row['headline'].' ')."</td>");
             if(isset($_SESSION['user_id'])&& $_SESSION['user_id'] = htmlentities($row['user_id']))
@@ -83,4 +83,3 @@ else
 </div>
 </body>
 </html>
-
