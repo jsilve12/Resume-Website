@@ -149,18 +149,19 @@
            $stmt2 = $pdo->prepare('SELECT Education.profile_id, Education.rank, Education.year, Institution.Years, Institution.Degree, Institution.GPA, Institution.institution_id, Education.institution_id, Institution.name FROM (Education INNER JOIN Institution ON Education.institution_id = Institution.institution_id) WHERE profile_id = :uid');
         $stmt2->execute(array(':uid' => $_GET['profile_id']));
 
+        $a=0;
         //Enters the profile data into the form
         while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
         {
             echo('
-              <h3 class="mb-0">'.$row['name'].'</h3>
-              <div class="subheading mb-3">'.$row['Degree'].'
-              <p>GPA: '.$row['GPA'].'</p>
-            </div>
+              <h3 class="mb-0" id = "School'.$a.'">'.$row['name'].'</h3>'.modify_button('School'.$a).'
+              <div class="subheading mb-3"><p id="Degree'.$a.'">'.$row['Degree'].'
+              </p>'.modify_button('Degree'.$a).'<p>GPA: <span id="GPA'.$a.'"> '.$row['GPA'].'</span></p>'.modify_button('GPA'.$a).'</div>
             <div class="resume-date text-md-right">
-              <span class="text-primary">'.$row['Years'].'</span>
+              <span class="text-primary" id="Year'.$a.'">'.$row['Years'].'</span>'.modify_button('Year'.$a).'
             </div>
           </div>');
+          $a++;
         }
         ?>
 
@@ -175,12 +176,14 @@
           $stmt2 = $pdo->prepare('SELECT * FROM Skills');
         $stmt2->execute();
 
+        $a = 0;
         //Enters the profile data into the form
         while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
         {
             echo('
-              <h3 class="mb-0">'.$row['Skill'].'</h3>
-              <p>'.$row['Description'].'</p>');
+              <h3 class="mb-0" id="Skill'.$a.'">'.$row['Skill'].'</h3>'.modify_button('Skill'.$a).'
+              <p id = "SkillDescription'.$a.'">'.$row['Description'].'</p>'.modify_button('SkillDescription'.$a).'');
+            $a++;
         }
           ?>
         </div>
@@ -195,12 +198,14 @@
             $stmt2 = $pdo->prepare('SELECT * FROM Interest');
             $stmt2->execute();
 
+            $a =0;
             //Enters the profile data into the form
             while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
             {
               echo('
-              <p class="mb-0">'.$row['description'].'</p>');
+              <p class="mb-0" id=Interest'.$a.'>'.$row['description'].'</p>'.modify_button('Interest'.$a));
             }
+            $a++;
           ?>
         </div>
       </section>
