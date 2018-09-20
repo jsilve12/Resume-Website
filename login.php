@@ -5,7 +5,7 @@ require_once "Functions.php";
 if(!isset($_GET['profile_id']))
 {
     header("Location:index.php");
-    $_SESSION['error'] = "Profile Doesn\'t Exist";
+    $_SESSION['error'] = "Profile Doesn't Exist";
     return;
 }
 basic_stuff();
@@ -30,13 +30,13 @@ if(isset($_POST['Log']))
     {
         $_SESSION['name'] = $row['name'];
         $_SESSION['user_id'] = $row['user_id'];
-        header("Location: index.php");
+        header("Location: modify.php?profile_id=".$_GET['profile_id']);
         return;
     }
     else
     {
         $_SESSION['error'] = "Invalid Username or Password";
-        header("Location: login.php");
+        header("Location: login.php?profile_id=".$_GET['profile_id']);
         return;
     }
 }
@@ -135,9 +135,8 @@ if(isset($_POST['Log']))
         } catch(e)
         {
         return false;
+      }
     }
 </script>
-<!-- Custom scripts for this template -->
-<script src="Bootstrap/js/resume.min.js"></script>
 </div>
 </body>

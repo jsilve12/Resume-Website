@@ -69,8 +69,8 @@
             <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="login.php?profile_id=<?php echo($_GET['profile_id']); ?>">
-              Modify</a>
+            <a class="nav-link js-scroll-trigger" href="resume.php?profile_id=<?php echo($_GET['profile_id']); ?>">
+              Finish</a>
           </li>
         </ul>
       </div>
