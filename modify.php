@@ -14,6 +14,10 @@
     $result = $pdo->prepare('SELECT * FROM Profile WHERE profile_id = :uid');
     $result->execute(array(':uid' => $_GET['profile_id']));
     $row = $result->fetch(PDO::FETCH_ASSOC);
+    function modify_button($name)
+    {
+      return('<button type = "button" onclick = changeName("'.$name.'")>Modify</button>');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -84,12 +88,12 @@
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto" id="name">
           <h1 class="mb-0" id="Fname"><?php echo($row['first_name']); ?>
-            <span class="text-primary" id="Lname"><?php echo($row['last_name']); ?></span></h1><button type = 'button' onclick = changeName()> Modify</button>
-          <div class="subheading mb-5">
-            <a href="mailto:name@email.com"><?php echo($row['email']); ?></a>
-          </div>
-          <p class="lead mb-5"><?php echo($row['summary']); ?></p>
-          <div class="social-icons">
+            <span class="text-primary" id="Lname"><?php echo($row['last_name']); ?></span></h1><button type = 'button' onclick = changeName('Fname')> Modify</button>
+          <div class="subheading mb-5" id='email'>
+            <a href="mailto:name@email.com"><?php echo($row['email']); ?></a></div>
+            <button type = 'button' onclick = changeName('email')> Modify</button>
+          <p class="lead mb-5" id="summary"><?php echo($row['summary']); ?></p><button type = 'button' onclick = changeName('summary')> Modify</button>
+          <!-- <div class="social-icons">
             <a href="#">
               <i class="fab fa-linkedin-in"></i>
             </a>
@@ -102,7 +106,7 @@
             <a href="#">
               <i class="fab fa-facebook-f"></i>
             </a>
-          </div>
+          </div> -->
         </div>
       </section>
 
@@ -119,15 +123,17 @@
               $stmt1->execute(array(':uid' => $_GET['profile_id']));
 
               //Enters the profile data into the form
+              $a = 0;
               while($row = $stmt1->fetch(PDO::FETCH_ASSOC))
               {
                 echo('<div class="resume-content mr-auto">
-              <h3 class="mb-0">'.$row['header'].'</h3>');
-                echo(' <p>'.$row['description'].'</p></div>');
+              <h3 class="mb-0" id ="experience'.$a.'">'.$row['header'].'</h3>'.modify_button('experience'.$a));
+                echo(' <p id ="ExpDescription'.$a.'">'.$row['description'].'</p>'.modify_button('ExpDescription'.$a).'</div>');
                 echo('<div class="resume-date text-md-right">
-              <span class="text-primary">'.$row['year'].'</span>
+              <span class="text-primary" id ="ExpYear'.$a.'">'.$row['year'].'</span>'.modify_button('ExpYear'.$a).'
             </div>
             </div>');
+            $a++;
               };
               ?>
 
@@ -203,15 +209,12 @@
 
     </div>
     <script type=text/javascript>
-        function changeName()
+        function changeName(Edit)
         {
             console.log('Pulling up name Change');
             try
             {
-                Fname = document.getElementById('Fname').value;
-                Lname = document.getElementById('Lname').value;
-
-                document.getElementById('Fname').contentEditable = "true";
+                document.getElementById(Edit).contentEditable = "true";
                 return false;
             } catch(e)
             {

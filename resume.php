@@ -12,6 +12,7 @@
     $result = $pdo->prepare('SELECT * FROM Profile WHERE profile_id = :uid');
     $result->execute(array(':uid' => $_GET['profile_id']));
     $row = $result->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +89,7 @@
             <a href="mailto:name@email.com"><?php echo($row['email']); ?></a>
           </div>
           <p class="lead mb-5"><?php echo($row['summary']); ?></p>
-          <div class="social-icons">
+          <!-- <div class="social-icons">
             <a href="#">
               <i class="fab fa-linkedin-in"></i>
             </a>
@@ -97,11 +98,11 @@
             </a>
             <a href="#">
               <i class="fab fa-twitter"></i>
-            </a>
+            </a>Modify</button>
             <a href="#">
               <i class="fab fa-facebook-f"></i>
             </a>
-          </div>
+          </div> -->
         </div>
       </section>
 
