@@ -153,8 +153,7 @@
             </div>
             <div class="resume-date text-md-right">
               <span class="text-primary">'.$row['Years'].'</span>
-            </div>
-          </div>');
+            </div>');
         }
         ?>
 

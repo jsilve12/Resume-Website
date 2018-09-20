@@ -154,13 +154,12 @@
         while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
         {
             echo('
-              <h3 class="mb-0" id = "School'.$a.'">'.$row['name'].'</h3>'.modify_button('School'.$a).'
+              <h3 class="mb-0" "><span id = "School'.$a.'"> '.$row['name'].' </span>'.modify_button('School'.$a).'</h3>
               <div class="subheading mb-3"><p id="Degree'.$a.'">'.$row['Degree'].'
               </p>'.modify_button('Degree'.$a).'<p>GPA: <span id="GPA'.$a.'"> '.$row['GPA'].'</span></p>'.modify_button('GPA'.$a).'</div>
             <div class="resume-date text-md-right">
               <span class="text-primary" id="Year'.$a.'">'.$row['Years'].'</span>'.modify_button('Year'.$a).'
-            </div>
-          </div>');
+            </div>');
           $a++;
         }
         ?>
