@@ -69,11 +69,13 @@
             <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="login.php">Modify</a>
+            <a class="nav-link js-scroll-trigger" href="login.php?profile_id=<?php echo($_GET['profile_id']); ?>">
+              Modify</a>
           </li>
         </ul>
       </div>
     </nav>
+
 
     <div class="container-fluid p-0">
 
@@ -114,7 +116,7 @@
               //Creates the table variables and gets the profile data
               $stmt1 = $pdo->prepare('SELECT * FROM `Position` WHERE profile_id = :uid');
               $stmt1->execute(array(':uid' => $_GET['profile_id']));
-        
+
               //Enters the profile data into the form
               while($row = $stmt1->fetch(PDO::FETCH_ASSOC))
               {
@@ -139,7 +141,7 @@
           <?php
            $stmt2 = $pdo->prepare('SELECT Education.profile_id, Education.rank, Education.year, Institution.Years, Institution.Degree, Institution.GPA, Institution.institution_id, Education.institution_id, Institution.name FROM (Education INNER JOIN Institution ON Education.institution_id = Institution.institution_id) WHERE profile_id = :uid');
         $stmt2->execute(array(':uid' => $_GET['profile_id']));
-        
+
         //Enters the profile data into the form
         while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
         {
@@ -162,10 +164,10 @@
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
         <div class="my-auto">
           <h2 class="mb-5">Skills</h2>
-          <?php 
+          <?php
           $stmt2 = $pdo->prepare('SELECT * FROM Skills');
         $stmt2->execute();
-        
+
         //Enters the profile data into the form
         while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
         {
@@ -182,10 +184,10 @@
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
         <div class="my-auto">
           <h2 class="mb-5">Interests</h2>
-          <?php 
+          <?php
             $stmt2 = $pdo->prepare('SELECT * FROM Interest');
             $stmt2->execute();
-        
+
             //Enters the profile data into the form
             while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
             {
@@ -201,14 +203,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="Bootstrap/vendor/jquery/jquery.min.js"></script>
+    <script src="Bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="Bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/resume.min.js"></script>
+    <script src="Bootstrap/js/resume.min.js"></script>
 
   </body>
 
