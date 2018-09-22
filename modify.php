@@ -88,11 +88,11 @@
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto" id="name">
           <h1 class="mb-0" id="Fname"><?php echo($row['first_name']); ?>
-            <span class="text-primary" id="Lname"><?php echo($row['last_name']); ?></span></h1><button type = 'button' onclick = changeName('Fname')> Modify</button>
+            <span class="text-primary" id="Lname"><?php echo($row['last_name']); ?></span></h1><?php echo(modify_button('name'));?>
           <div class="subheading mb-5" id='email'>
             <a href="mailto:name@email.com"><?php echo($row['email']); ?></a></div>
-            <button type = 'button' onclick = changeName('email')> Modify</button>
-          <p class="lead mb-5" id="summary"><?php echo($row['summary']); ?></p><button type = 'button' onclick = changeName('summary')> Modify</button>
+            <?php echo(modify_button('email'));?>
+          <p class="lead mb-5" id="summary"><?php echo($row['summary']); ?></p><?php echo(modify_button('summary'));?>
           <!-- <div class="social-icons">
             <a href="#">
               <i class="fab fa-linkedin-in"></i>
@@ -220,7 +220,16 @@
             {
               if(document.getElementById(button).innerHTML == "Save")
               {
-
+                document.getElementById(Edit).contentEditable = "false";
+                document.getElementById(button).innerHTML = "Modify";
+                $.post("Update.php",
+                {
+                  name: Edit,
+                  value: document.getElementById(Edit).innerHTML,
+                  user_id: <?php echo $_GET['profile_id'];?>
+                });
+                console.log('Success');
+                return false;
               }
               else {
                 document.getElementById(Edit).contentEditable = "true";
@@ -230,6 +239,7 @@
               }
             } catch(e)
             {
+              console.log('Fail');
             return false;
           }
         }
