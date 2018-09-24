@@ -115,7 +115,7 @@
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <?php
               //Creates the table variables and gets the profile data
-              $stmt1 = $pdo->prepare('SELECT * FROM `Position` WHERE profile_id = :uid');
+              $stmt1 = $pdo->prepare('SELECT * FROM `Posit` WHERE profile_id = :uid');
               $stmt1->execute(array(':uid' => $_GET['profile_id']));
 
               //Enters the profile data into the form
@@ -140,7 +140,7 @@
           <h2 class="mb-5">Education</h2>
         </div>
           <?php
-           $stmt2 = $pdo->prepare('SELECT Education.profile_id, Education.rank, Education.year, Institution.Years, Institution.Degree, Institution.GPA, Institution.institution_id, Education.institution_id, Institution.name FROM (Education INNER JOIN Institution ON Education.institution_id = Institution.institution_id) WHERE profile_id = :uid');
+           $stmt2 = $pdo->prepare('SELECT * FROM EDUCATION WHERE profile_id = :uid');
         $stmt2->execute(array(':uid' => $_GET['profile_id']));
 
         //Enters the profile data into the form
@@ -165,8 +165,8 @@
         <div class="my-auto">
           <h2 class="mb-5">Skills</h2>
           <?php
-          $stmt2 = $pdo->prepare('SELECT * FROM Skills');
-        $stmt2->execute();
+          $stmt2 = $pdo->prepare('SELECT * FROM SkillsWHERE profile_id = :uid');
+       $stmt2->execute(array(':uid' => $_GET['profile_id']));
 
         //Enters the profile data into the form
         while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
@@ -185,8 +185,8 @@
         <div class="my-auto">
           <h2 class="mb-5">Interests</h2>
           <?php
-            $stmt2 = $pdo->prepare('SELECT * FROM Interest');
-            $stmt2->execute();
+            $stmt2 = $pdo->prepare('SELECT * FROM Interest WHERE profile_id = :uid');
+            $stmt2->execute(array(':uid' => $_GET['profile_id']));
 
             //Enters the profile data into the form
             while($row = $stmt2->fetch(PDO::FETCH_ASSOC))

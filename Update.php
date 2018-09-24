@@ -26,7 +26,7 @@
     }
     public function sendInt($value, $integer, $profile)
     {
-      $result1 = $pdo->prepare('UPDATE '.$tableName.'  SET '.$sqlName.' = :em WHERE profile_id = :pid primary = :prim');
+      $result1 = $pdo->prepare('UPDATE '.$tableName.'  SET '.$sqlName.' = :em WHERE profile_id = :pid prim = :prim');
       //For some reason the explode function counts 12 spaces
       $result1->execute(array(
         ':pid' => $profile,

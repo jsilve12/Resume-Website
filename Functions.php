@@ -8,7 +8,7 @@
         //Constructor
         public function __construct()
         {
-            $this->pdo = new PDO('mysql:host=localhost;port=3306;dbname=misc','Jonathan', 'Hatter12');
+            $this->pdo = new PDO('mysql:host=localhost;port=3306;dbname=Resume','Jonathan', 'Hatter12');
 
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         }
