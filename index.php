@@ -1,4 +1,5 @@
-<?php
+<?php header('Location: resume.php?profile_id=79'); ?>
+<!-- <?php
 session_start();
 require_once("Functions.php");
 require_once("pdo.php");
@@ -82,4 +83,4 @@ else
     ?>
 </div>
 </body>
-</html>
+</html> -->

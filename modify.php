@@ -88,7 +88,7 @@
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto" id="name">
           <h1 class="mb-0" id="Fname"><?php echo($row['first_name']); ?>
-            <span class="text-primary" id="Lname"><?php echo($row['last_name']); ?></span></h1><?php echo(modify_button('name'));?>
+            <span class="text-primary" id="Lname"><?php echo($row['last_name']); ?></span></h1><?php echo(modify_button('Fname'));?>
           <div class="subheading mb-5" id='email'>
             <a href="mailto:name@email.com"><?php echo($row['email']); ?></a></div>
             <?php echo(modify_button('email'));?>
@@ -222,12 +222,13 @@
               {
                 document.getElementById(Edit).contentEditable = "false";
                 document.getElementById(button).innerHTML = "Modify";
-                $.post("Update.php",
-                {
-                  name: Edit,
-                  value: document.getElementById(Edit).innerHTML,
-                  user_id: <?php echo $_GET['profile_id'];?>
-                });
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "Update.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(
+                  "profile_id="+<?php echo($_GET['profile_id']);?>+
+                  "&name="+Edit+
+                  "&value="+document.getElementById(Edit).textContent);
                 console.log('Success');
                 return false;
               }
