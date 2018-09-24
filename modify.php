@@ -154,7 +154,7 @@
               <div class="subheading mb-3"><p id="Degree'.$row['prim'].'">'.$row['Degree'].'
               </p>'.modify_button('Degree'.$row['prim']).'<p>GPA: <span id="GPA'.$row['prim'].'"> '.$row['GPA'].'</span></p>'.modify_button('GPA'.$row['prim']).'</div>
             <div class="resume-date text-md-right">
-              <span class="text-primary" id="Year'.$row['prim'].'">'.$row['Years'].'</span>'.modify_button('Year'.$row['prim']).'
+              <span class="text-primary" id="SchoolYear'.$row['prim'].'">'.$row['Years'].'</span>'.modify_button('SchoolYear'.$row['prim']).'
             </div>');
         }
         ?>
@@ -174,7 +174,7 @@
         while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
         {
             echo('
-              <h3 class="mb-0" id="Skill'.$row['prim'].'">'.$row['Skill'].'</h3>'.modify_button('Skill'.$row['prim']).'
+              <h3 class="mb-0" id="Skillers'.$row['prim'].'">'.$row['Skill'].'</h3>'.modify_button('Skillers'.$row['prim']).'
               <p id = "SkillDescription'.$row['prim'].'">'.$row['Description'].'</p>'.modify_button('SkillDescription'.$row['prim']).'');
         }
           ?>

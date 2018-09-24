@@ -12,11 +12,19 @@ require_once("Functions.php");
     {
       $this->buttonName = $butt;
       $this->sqlName = $sql;
-      $this->table = $table;
+      $this->tableName = $table;
     }
     public function getButton()
     {
       return $this->buttonName;
+    }
+    public function getSQL()
+    {
+      return $this->sqlName;
+    }
+    public function getTable()
+    {
+      return $this->tableName;
     }
   }
     $result = $pdo->prepare('SELECT * FROM Profile WHERE profile_id = :uid');
@@ -25,21 +33,42 @@ require_once("Functions.php");
 
     //Creates an array of objects that can be saved on the server
     $email = new send;
-    $email->set('email','email','profile');
+    $email->set('email','email','Profile');
 
     $summary = new send;
-    $summary->set('summary','summary','profile');
+    $summary->set('summary','summary','Profile');
 
     $header = new send;
-    $header->set('header','header','posit');
+    $header->set('experience','header','Posit');
 
     $descript = new send;
-    $descript->set('ExpDescription', 'description', 'posit');
+    $descript->set('ExpDescription', 'description', 'Posit');
 
     $years = new send;
-    $years->set('ExpYear', 'years', 'posit');
+    $years->set('ExpYear', 'years', 'Posit');
 
-    $School = new send;
+    $school = new send;
+    $school->set('School', 'name', 'Education');
+
+    $degree = new send;
+    $degree->set('Degree', 'Degree', 'Education');
+
+    $GPA = new send;
+    $GPA->set('GPA', 'GPA', 'Education');
+
+    $year = new send;
+    $year->set('SchoolYear', 'Years', 'Education');
+
+    $skill = new send;
+    $skill->set('Skillers', 'Skill', 'Skills');
+
+    $sDescript = new send;
+    $sDescript->set('SkillDescription', 'Description', 'Skills');
+
+    $Interest = new send;
+    $Interest->set('Interest', 'description', 'Interest');
+
+    $options = array($email, $summary, $header, $descript, $years, $school, $degree, $GPA, $year, $skill, $sDescript, $Interest);
 
     // public function send($value, $profile)
     // {
@@ -65,14 +94,30 @@ require_once("Functions.php");
       ));
       echo('Success');
     }
-    else if($_POST['name'] == "email")
+    else
     {
-      $result1 = $pdo->prepare('UPDATE Profile SET email = :em WHERE profile_id = :pid');
-      //For some reason the explode function counts 12 spaces
-      $result1->execute(array(
-        ':pid' => $_POST['profile_id'],
-        ':em' => $_POST['value']
-      ));
-      echo('Success');
+      foreach($options as $key)
+      {
+        if(strpos($_POST['name'], $key->getButton()) !== false)
+        {
+          //Gets any index
+          $index = substr($_POST['name'], strlen($key->getButton()));
+          if(strlen($index) == 0)
+          {
+            $result1 = $pdo->prepare('UPDATE '.$key->getTable().' SET '.$key->getSQL().' = :em WHERE profile_id = '.$_POST['profile_id']);
+              $result1->execute(array(
+                ':em' => $_POST['value']
+              ));
+          }
+          else {
+            echo($key->getSQL());
+            $result1 = $pdo->prepare('UPDATE '.$key->getTable().'  SET '.$key->getSQL().' = :em WHERE profile_id = '.$_POST['profile_id'].' AND prim = '.$index);
+              $result1->execute(array(
+                ':em' => $_POST['value']
+              ));
+              echo('success');
+          }
+        }
+      }
     }
 ?>
