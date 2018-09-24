@@ -123,17 +123,15 @@
               $stmt1->execute(array(':uid' => $_GET['profile_id']));
 
               //Enters the profile data into the form
-              $a = 0;
               while($row = $stmt1->fetch(PDO::FETCH_ASSOC))
               {
                 echo('<div class="resume-content mr-auto">
-              <h3 class="mb-0" id ="experience'.$a.'">'.$row['header'].'</h3>'.modify_button('experience'.$a));
-                echo(' <p id ="ExpDescription'.$a.'">'.$row['description'].'</p>'.modify_button('ExpDescription'.$a).'</div>');
+              <h3 class="mb-0" id ="experience'.$row['prim'].'">'.$row['header'].'</h3>'.modify_button('experience'.$row['prim']));
+                echo(' <p id ="ExpDescription'.$row['prim'].'">'.$row['description'].'</p>'.modify_button('ExpDescription'.$row['prim']).'</div>');
                 echo('<div class="resume-date text-md-right">
-              <span class="text-primary" id ="ExpYear'.$a.'">'.$row['year'].'</span>'.modify_button('ExpYear'.$a).'
+              <span class="text-primary" id ="ExpYear'.$row['prim'].'">'.$row['years'].'</span>'.modify_button('ExpYear'.$row['prim']).'
             </div>
             </div>');
-            $a++;
               };
               ?>
 
@@ -146,7 +144,7 @@
           <h2 class="mb-5">Education</h2>
         </div>
           <?php
-           $stmt2 = $pdo->prepare('SELECT * FROM EDUCATION WHERE profile_id = :uid');
+           $stmt2 = $pdo->prepare('SELECT * FROM Education WHERE profile_id = :uid');
         $stmt2->execute(array(':uid' => $_GET['profile_id']));
         //Enters the profile data into the form
         while($row = $stmt2->fetch(PDO::FETCH_ASSOC))

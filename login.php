@@ -19,10 +19,9 @@ if ( isset($_POST['cancel'] ))
         header("location: index.php");
     return;
 }
-$salt = 'XyZzy12*_';
 if(isset($_POST['Log']))
 {
-    $check = hash('md5', $salt.$_POST['pass']);
+    $check = $_POST['pass'];
     $stmt10 = $pdo->prepare('SELECT user_id, name FROM users WHERE email = :em AND password = :pw');
     $stmt10->execute(array(':em' => $_POST['email'], ':pw'=> $check));
     $row = $stmt10->fetch(PDO::FETCH_ASSOC);

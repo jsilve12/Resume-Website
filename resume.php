@@ -125,7 +125,7 @@
               <h3 class="mb-0">'.$row['header'].'</h3>');
                 echo(' <p>'.$row['description'].'</p></div>');
                 echo('<div class="resume-date text-md-right">
-              <span class="text-primary">'.$row['year'].'</span>
+              <span class="text-primary">'.$row['years'].'</span>
             </div>
             </div>');
               };
@@ -140,7 +140,7 @@
           <h2 class="mb-5">Education</h2>
         </div>
           <?php
-           $stmt2 = $pdo->prepare('SELECT * FROM EDUCATION WHERE profile_id = :uid');
+           $stmt2 = $pdo->prepare('SELECT * FROM Education WHERE profile_id = :uid');
         $stmt2->execute(array(':uid' => $_GET['profile_id']));
 
         //Enters the profile data into the form
@@ -165,7 +165,7 @@
         <div class="my-auto">
           <h2 class="mb-5">Skills</h2>
           <?php
-          $stmt2 = $pdo->prepare('SELECT * FROM SkillsWHERE profile_id = :uid');
+          $stmt2 = $pdo->prepare('SELECT * FROM Skills WHERE profile_id = :uid');
        $stmt2->execute(array(':uid' => $_GET['profile_id']));
 
         //Enters the profile data into the form
