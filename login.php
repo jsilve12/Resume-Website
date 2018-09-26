@@ -4,9 +4,14 @@ require_once("pdo.php");
 require_once "Functions.php";
 if(!isset($_GET['profile_id']))
 {
-    header("Location:index.php");
-    $_SESSION['error'] = "Profile Doesn't Exist";
-    return;
+  //The server - for whatever reason - dislikes header and makes you redirect inside an HTML page
+    echo("<html>
+				<head>
+				  <meta http-equiv='Refresh' content='0;url=index.php' />
+				  <!-- US -->
+				</head>
+			</html>");
+        return;
 }
 
 basic_stuff();
@@ -15,9 +20,15 @@ $result->execute(array(':uid' => $_GET['profile_id']));
 $row = $result->fetch(PDO::FETCH_ASSOC);
 if ( isset($_POST['cancel'] ))
 {
-    // Redirect the browser to autos.php
-        header("location: index.php");
-    return;
+  //The server - for whatever reason - dislikes header and makes you redirect inside an HTML page
+    // Redirect the browser to resume.php
+        echo("<html>
+				<head>
+				  <meta http-equiv='Refresh' content='0;url=resume.php?profile_id=".(string)$_GET['profile_id']."' />
+				  <!-- US -->
+				</head>
+			</html>");
+        return;
 }
 if(isset($_POST['Log']))
 {
@@ -28,15 +39,27 @@ if(isset($_POST['Log']))
 
     if($row !== false)
     {
+      //The server - for whatever reason - dislikes header and makes you redirect inside an HTML page
         $_SESSION['name'] = $row['name'];
         $_SESSION['user_id'] = $row['user_id'];
-        header("Location: modify.php?profile_id=".$_GET['profile_id']);
+     	echo("<html>
+				<head>
+				  <meta http-equiv='Refresh' content='0;url=modify.php?profile_id=".(string)$_GET['profile_id']."' />
+				  <!-- US -->
+				</head>
+			</html>");
         return;
     }
     else
     {
+        //The server - for whatever reason - dislikes header and makes you redirect inside an HTML page
         $_SESSION['error'] = "Invalid Username or Password";
-        header("Location: login.php?profile_id=".$_GET['profile_id']);
+        echo("<html>
+				<head>
+				  <meta http-equiv='Refresh' content='0;url=login.php?profile_id=".(string)$_GET['profile_id']."' />
+				  <!-- US -->
+				</head>
+			</html>");
         return;
     }
 }
