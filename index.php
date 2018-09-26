@@ -1,4 +1,4 @@
-<?php header('Location: resume.php?profile_id=79'); ?>
+<?php header('Location: resume.php?profile_id=1'); ?>
 <!-- <?php
 session_start();
 require_once("Functions.php");

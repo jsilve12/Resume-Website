@@ -150,12 +150,10 @@
         while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
         {
             echo('
-              <h3 class="mb-0" "><span id = "School'.$row['prim'].'"> '.$row['name'].' </span>'.modify_button('School'.$row['prim']).'</h3>
+              <h3 class="mb-0" ">
+              <span id = "School'.$row['prim'].'"> '.$row['name'].' </span>'.modify_button('School'.$row['prim']).'</h3>
               <div class="subheading mb-3"><p id="Degree'.$row['prim'].'">'.$row['Degree'].'
-              </p>'.modify_button('Degree'.$row['prim']).'<p>GPA: <span id="GPA'.$row['prim'].'"> '.$row['GPA'].'</span></p>'.modify_button('GPA'.$row['prim']).'</div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary" id="SchoolYear'.$row['prim'].'">'.$row['Years'].'</span>'.modify_button('SchoolYear'.$row['prim']).'
-            </div>');
+              </p>'.modify_button('Degree'.$row['prim']).'<p>GPA: <span id="GPA'.$row['prim'].'"> '.$row['GPA'].'</span></p>'.modify_button('GPA'.$row['prim']).'<p>Description: <span id="EduDescription'.$row['prim'].'"> '.$row['Description'].'</span></p>'.modify_button('EduDescription'.$row['prim']).'</div><div class="resume-date text-md-right"><span class="text-primary" id="SchoolYear'.$row['prim'].'">'.$row['Years'].'</span>'.modify_button('SchoolYear'.$row['prim']).'</div>');
         }
         ?>
 
@@ -219,7 +217,8 @@
                 xhttp.send(
                   "profile_id="+<?php echo($_GET['profile_id']);?>+
                   "&name="+Edit+
-                  "&value="+document.getElementById(Edit).textContent);
+                  "&value="+encodeURIComponent(document.getElementById(Edit).textContent));
+                  console.log(document.getElementById(Edit).innerHTML);
                 console.log('Success');
                 return false;
               }

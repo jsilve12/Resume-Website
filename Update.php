@@ -56,6 +56,9 @@ require_once("Functions.php");
     $GPA = new send;
     $GPA->set('GPA', 'GPA', 'Education');
 
+    $eDescript = new send;
+    $eDescript->set('EduDescription', 'Description', 'Education');
+
     $year = new send;
     $year->set('SchoolYear', 'Years', 'Education');
 
@@ -68,7 +71,7 @@ require_once("Functions.php");
     $Interest = new send;
     $Interest->set('Interest', 'description', 'Interest');
 
-    $options = array($email, $summary, $header, $descript, $years, $school, $degree, $GPA, $year, $skill, $sDescript, $Interest);
+    $options = array($email, $summary, $header, $descript, $years, $school, $degree, $GPA, $eDescript, $year, $skill, $sDescript, $Interest);
 
     // public function send($value, $profile)
     // {

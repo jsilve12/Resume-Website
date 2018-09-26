@@ -150,6 +150,7 @@
               <h3 class="mb-0">'.$row['name'].'</h3>
               <div class="subheading mb-3">'.$row['Degree'].'
               <p>GPA: '.$row['GPA'].'</p>
+              <p>Description: '.$row['Description'].'</p>
             </div>
             <div class="resume-date text-md-right">
               <span class="text-primary">'.$row['Years'].'</span>

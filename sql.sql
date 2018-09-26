@@ -27,6 +27,7 @@ CREATE TABLE Education(
   name VARCHAR(255),
   Years VARCHAR(255),
   Degree VARCHAR(255),
+  Description VARCHAR(255),
   GPA Double,
     PRIMARY KEY(prim),
   CONSTRAINT education_ibfk_1
